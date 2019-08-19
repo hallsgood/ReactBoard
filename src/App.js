@@ -26,6 +26,10 @@ class App extends Component {
     
     let result = await axios.get('/test')
    console.log(result);
+   console.log('aa');
+   console.log('test');
+   console.log('bb');
+   
    
     this.setState({ result :result.data })
   }
