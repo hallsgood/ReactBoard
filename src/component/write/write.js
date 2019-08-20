@@ -1,11 +1,41 @@
 import React, { Component } from 'react';
-
+import axios from 'axios'
 class Write extends Component {
-    //<textarea className="form-control"></textarea>
-
-    //  height: 500px;
+    state = { 
+        //id : '',
+        title : '',
+        context : '',
+    }
+    handleChange = (e)=>{
+        const {value} = e.target
+        this.setState({
+            ...this.state,
+            [e.target.name]:value,
+        })
+        console.log(this.state);
+        
+    }
+    boardInsert = ()=>{
+        axios.post('/boardwrite',{
+            headers: { 
+                'Content-type': 'application/x-www-form-urlencoded',
+             },
+            params : {
+                title : this.state.title,
+                context : this.state.context,
+            }
+        }).then(()=>{
+            console.log(this);
+            
+            console.log(`front insert success 여기서 다음페이지로 넘기는 것 호출`)
+        }).catch(()=>{
+            console.log(this);
+            
+        })
+    }
 
     render() {
+        let date = new Date();
         return (
             <div> 
       <div className="container py-5 mb5">
@@ -14,42 +44,31 @@ class Write extends Component {
             <div className="col-md-4 order-md-2 mb-4">
                     <h4 className="d-flex justify-content-between align-items-center mb-3">
                         <span className="text-muted">Option</span>
-                        <div className="btn-group btn-group-toggle" data-toggle="buttons">
-    <label className="btn btn-outline-primary">
-      <input type="checkbox" /> important
-    </label>
-  </div>
+          
                     </h4>
                     <ul className="list-group mb-3">
-                    <li className="list-group-item d-flex justify-content-between lh-condensed">
-                        <input className="form-control" type="date" id="example-date-input"/>
-                        </li>
-                        <li className="list-group-item d-flex justify-content-between lh-condensed">
-                        <select className="custom-select">
-  <option >업무 유형을 선택</option>
-  <option value="1">일간 업무</option>
-  <option value="2">회의 일지</option>
-  <option value="3">출장 일지</option>
-</select>
-                        </li>
-                       
-                        <li className="list-group-item d-flex justify-content-between lh-condensed">
-                        <select className="custom-select">
-  <option>소속을 선택</option>
-  <option value="1">인사</option>
-  <option value="2">재무</option>
-  <option value="3">개발</option>
-  <option value="4">영업</option>
-  <option value="5">생산</option>
-  <option value="6">R &amp;D</option>
-</select>
-                        </li>
+                    <li className="list-group-item d-flex justify-content-between">
+          <span>소속</span>
+          <strong> 내가바로 인사팀</strong>
+        </li>
                         <li className="list-group-item d-flex justify-content-between">
-                           
-                        </li>
+          <span>직급</span>
+          <strong>사장쓰</strong>
+        </li>
+                       
+                        <li className="list-group-item d-flex justify-content-between">
+          <span>작성일</span>
+          <strong>{date.getFullYear()}.{date.getMonth()+1}.{date.getDate()} {date.getHours()}시 {date.getMinutes()}분</strong>
+        </li>
+                        <li className="list-group-item d-flex justify-content-between">
+          <span>writer</span>
+          <strong>id</strong>
+        </li>
                     </ul>
-       
-                    <a href="#!" className="btn btn-primary btn-block">Block level button</a>
+                    <button type="button" className="btn btn-primary"onClick={this.boardInsert}>
+  Popover on bottom
+</button>
+                    {/* <button onClick={this.boardInsert} className="btn btn-primary btn-block" value="submit"/> */}
                 </div>
 
 
@@ -62,20 +81,12 @@ class Write extends Component {
                     <h4 className="mb-3">Please Write Your 업무일즤써듀셈</h4>
                    
                         <div className="mb-3">
-                            <label>Id 업무일지 작성자</label>
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">@</span>
-                                </div>
-                                <input type="text" className="form-control" id="username" placeholder="Username" required/>
-                                <div className="invalid-feedback" >
-                                    Your username is required.
-                                </div>
-                            </div>
+                            <label>제목쓰</label>
+                            <input className="form-control"onChange={this.handleChange} type="text" name="title" placeholder="Title" id="example-text-input"/>
                         </div>
                         <div className="mb-3">
                             <label>업무 내용 </label>
-                        <textarea className="textarea form-control"></textarea>
+                        <textarea onChange={this.handleChange} className="textarea form-control" name="context" placeholder="contents"></textarea>
                             
                         </div>
 

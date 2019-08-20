@@ -24,7 +24,7 @@ class App extends Component {
 
   async componentDidMount() {
     
-    let result = await axios.get('/test')
+    let result = await axios.get('/user/test')
    console.log(result);
    console.log('aa');
    console.log('test');
@@ -57,7 +57,7 @@ class App extends Component {
             
             <Route exact path='/' component={Home}/>
             <Route exact path='/signup' component={Signup}/>
-            <Route exact path='/write' component={Write}/>
+            <Route exact path='/boardwrite' component={Write}/>
             <Route exact path='/list' component={List}/>
             <Route exact path='/detail' component={Detail}/>
           </Switch>
