@@ -650,7 +650,7 @@ module.exports = function(webpackEnv) {
       port:3000,
       open:true,
       proxy:{
-        "/":"http://localhost"
+        "/":"http://localhost:5000"
       }
     },
   };

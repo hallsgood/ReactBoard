@@ -15,7 +15,7 @@ export function Navbar(props) {
             <a href="/mypage" className="p-3 text-decoration-none text-light">My Page</a>
             
             <a href="/list" className="p-3 text-decoration-none text-light">Board List</a>
-            <a href="/write" className="p-3 text-decoration-none text-light">write</a>
+            <a href="/boardwrite" className="p-3 text-decoration-none text-light">write</a>
             <a href="/detail" className="p-3 text-decoration-none text-light">detail</a>
           </div>
           
